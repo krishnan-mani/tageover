@@ -61,7 +61,7 @@ rake list_tags_for_account[account_id]
 TODO
 ===
 
-- [ ] Allow user input for start and end dates for ```list_tags``` (currently assumes an ```End``` date of today and ```Start``` date a month ago) 
+- [x] Allow user input for start and end dates for ```list_tags``` (currently assumes an ```End``` date of today and ```Start``` date a month ago) 
 - [ ] Implement pagination for API calls
 - [ ] Add a command-line invocation as an alternative to ```rake``` tasks
 - [ ] More testing
