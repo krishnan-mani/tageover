@@ -6,10 +6,11 @@ Usage
 - Has ```rake``` tasks you can run to get tags on an AWS account, and related accounts within an AWS Organization.
 
 ```
+
 $ rake -T
-rake list_accounts                      # List related account Ids
-rake list_tags                          # List tags
-rake list_tags_for_account[account_id]  # List tags on a different account
+rake list_accounts                                          # List related ...
+rake list_tags[start_date,end_date]                         # List tags, op...
+rake list_tags_for_account[account_id,start_date,end_date]  # List tags on ...
 
 ```
 
@@ -32,12 +33,13 @@ $ rvm current
 ruby-2.4.1@tageover
 $ gem install bundler --no-ri --no-rdoc
 $ bundle install --binstubs
-$ rake -D tags
-rake list_tags
-    List tags
 
-rake list_tags_for_account[account_id]
-    List tags on a different account
+$ rake -D tags
+rake list_tags[start_date,end_date]
+    List tags, optionally specify dates as YYYY-mm-dd
+
+rake list_tags_for_account[account_id,start_date,end_date]
+    List tags on a different account, optionally specify dates as YYYY-mm-dd
 
 ```
 
@@ -49,18 +51,20 @@ rake list_tags_for_account[account_id]
 $ set -x AWS_PROFILE km@enceladus
 $ echo $AWS_PROFILE
 km@enceladus
+
 $ rake -D account
 rake list_accounts
     List related account Ids
 
-rake list_tags_for_account[account_id]
-    List tags on a different account
+rake list_tags_for_account[account_id,start_date,end_date]
+    List tags on a different account, optionally specify dates as YYYY-mm-dd
      
 ```
 
 TODO
 ===
 
+- [ ] Add task to get tags on all accounts within an organization
 - [x] Allow user input for start and end dates for ```list_tags``` (currently assumes an ```End``` date of today and ```Start``` date a month ago) 
 - [ ] Implement pagination for API calls
 - [ ] Add a command-line invocation as an alternative to ```rake``` tasks

@@ -26,7 +26,7 @@ task :list_tags, [:start_date, :end_date] do |t, args|
 end
 
 
-desc "List tags on a different account"
+desc "List tags on a different account, optionally specify dates as YYYY-mm-dd"
 task :list_tags_for_account, [:account_id, :start_date, :end_date] do |t, args|
   account_id = args.account_id or raise 'AWS account Id not specified'
   start_date, end_date = get_start_and_end_dates(args)
