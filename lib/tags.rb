@@ -24,7 +24,8 @@ def get_tags(start_date = nil, end_date = nil, credentials = nil)
 
   client = Aws::CostExplorer::Client.new(config)
 
-  _start_date, _end_date = (start_date.nil? and end_date.nil?) ? get_start_and_end_dates : [start_date, end_date]
+  _start_date, _end_date = (start_date.nil? and end_date.nil?) ?
+      get_start_and_end_dates : [get_date_string(start_date), get_date_string(end_date)]
   response = client.get_tags(time_period: {
       start: _start_date,
       end: _end_date
