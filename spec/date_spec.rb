@@ -1,4 +1,4 @@
-RSpec.describe "date utility" do
+RSpec.describe "date utilities" do
 
   def pad_two_digits(foo)
     foo.to_s.rjust(2, '0')
@@ -8,7 +8,8 @@ RSpec.describe "date utility" do
     require 'date'
     now = DateTime.now
     date_str = now.strftime('%Y-%m-%d')
-    expect(date_str).to eql "#{now.year}-#{pad_two_digits(now.month)}-#{pad_two_digits(now.day)}"
+    expected_date_str = "#{now.year}-#{pad_two_digits(now.month)}-#{pad_two_digits(now.day)}"
+    expect(date_str).to eq expected_date_str
   end
 
 end
