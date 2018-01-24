@@ -25,10 +25,9 @@ Tasks
 HOW-TO
 ===
 
-- Recommended: Use ```rvm``` and a gemset with ```ruby-2.4.1```
+- Recommended: Install [rvm](https://rvm.io/) and use a gemset with ruby ```ruby-2.4.1```
 
 ```
-
 $ rvm current
 ruby-2.4.1@tageover
 $ gem install bundler --no-ri --no-rdoc
@@ -62,10 +61,10 @@ rake list_tags_for_account[account_id]
 TODO
 ===
 
-- [] Allow user input for start and end dates for ```list_tags``` (currently assumes an ```End``` date of today and ```Start``` date a month ago) 
-- [] Implement pagination for API calls
-- [] Add a command-line invocation as an alternative to ```rake``` tasks
-- [] More testing
+- [ ] Allow user input for start and end dates for ```list_tags``` (currently assumes an ```End``` date of today and ```Start``` date a month ago) 
+- [ ] Implement pagination for API calls
+- [ ] Add a command-line invocation as an alternative to ```rake``` tasks
+- [ ] More testing
 
 References
 ===
