@@ -1,4 +1,4 @@
-Read all tags across related accounts
+Read all tags across related AWS accounts
 
 Usage
 ===
