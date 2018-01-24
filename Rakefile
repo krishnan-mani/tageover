@@ -16,8 +16,9 @@ task :list_tags, [:start_date, :end_date] do |t, args|
   start_date = args.start_date.nil? ? nil : Date.strptime(args.start_date)
   end_date = args.end_date.nil? ? nil : Date.strptime(args.end_date)
   raise 'Specify both start and end dates' if (end_date.nil? and (not (start_date.nil?)))
+  _start, _end = start_date < end_date ? [start_date, end_date] : [end_date, start_date]
 
-  puts get_tags(start_date, end_date)
+  puts get_tags(_start, _end)
 end
 
 
