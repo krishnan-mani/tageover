@@ -11,11 +11,15 @@ def get_date_string(now)
   now.strftime('%Y-%m-%d')
 end
 
-def get_start_and_end_dates
+def default_start_and_end_dates
   now = Date.today
   today_str = get_date_string(now)
   last_month_str = get_date_string((now << 1))
   [last_month_str, today_str]
+end
+
+def format_input_dates(start_date, end_date)
+  [get_date_string(start_date), get_date_string(end_date)]
 end
 
 def get_tags(start_date = nil, end_date = nil, credentials = nil)
@@ -25,7 +29,7 @@ def get_tags(start_date = nil, end_date = nil, credentials = nil)
   client = Aws::CostExplorer::Client.new(config)
 
   _start_date, _end_date = (start_date.nil? and end_date.nil?) ?
-      get_start_and_end_dates : [get_date_string(start_date), get_date_string(end_date)]
+      default_start_and_end_dates : format_input_dates(start_date, end_date)
   response = client.get_tags(time_period: {
       start: _start_date,
       end: _end_date
