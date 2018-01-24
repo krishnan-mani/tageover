@@ -6,11 +6,31 @@ Usage
 - Has ```rake``` tasks you can run to get tags on an AWS account, and related accounts within an AWS Organization.
 
 ```
-
 $ rake -T
-rake list_accounts                                          # List related ...
+rake list_accounts                                          # List all acco...
 rake list_tags[start_date,end_date]                         # List tags, op...
 rake list_tags_for_account[account_id,start_date,end_date]  # List tags on ...
+
+$ rake -D list_accounts
+rake list_accounts
+    List all account Ids that are part of the organization
+
+$ rake -D list_tags
+rake list_tags[start_date,end_date]
+    List tags, optionally specify start and end dates in the format "YYYY-mm-dd"
+    Order of dates does not matter
+    For example:
+    rake list_tags[2017-12-25','2018-01-25']
+
+    When not specified, end date and start date are defaulted to today, and a month ago respectively
+
+rake list_tags_for_account[account_id,start_date,end_date]
+    List tags on an account in the organization (by account Id)
+    Optionally, specify start and end dates in the format "YYYY-mm-dd". Order of dates does not matter
+    For example:
+    rake list_tags_for_account['123456789012','2017-12-25','2018-01-25']
+
+    When not specified, end date and start date are defaulted to today, and a month ago respectively
 
 ```
 
@@ -34,13 +54,6 @@ ruby-2.4.1@tageover
 $ gem install bundler --no-ri --no-rdoc
 $ bundle install --binstubs
 
-$ rake -D tags
-rake list_tags[start_date,end_date]
-    List tags, optionally specify dates as YYYY-mm-dd
-
-rake list_tags_for_account[account_id,start_date,end_date]
-    List tags on a different account, optionally specify dates as YYYY-mm-dd
-
 ```
 
 - Generate credentials for an IAM user on the master account (or use one of the [supported mechanisms to configure credentials](https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html))
@@ -51,13 +64,6 @@ rake list_tags_for_account[account_id,start_date,end_date]
 $ set -x AWS_PROFILE km@enceladus
 $ echo $AWS_PROFILE
 km@enceladus
-
-$ rake -D account
-rake list_accounts
-    List related account Ids
-
-rake list_tags_for_account[account_id,start_date,end_date]
-    List tags on a different account, optionally specify dates as YYYY-mm-dd
      
 ```
 

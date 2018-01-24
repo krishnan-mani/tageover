@@ -4,7 +4,9 @@ require_relative 'lib/organization_accounts'
 require_relative 'lib/tags'
 
 
-desc "List related account Ids"
+desc <<HERE
+List all account Ids that are part of the organization
+HERE
 task :list_accounts do
   puts list_accounts
 end
@@ -18,7 +20,14 @@ def get_start_and_end_dates(args)
 end
 
 
-desc "List tags, optionally specify dates as YYYY-mm-dd"
+desc <<HERE
+List tags, optionally specify start and end dates in the format "YYYY-mm-dd"
+Order of dates does not matter
+For example:
+rake list_tags[2017-12-25','2018-01-25']
+
+When not specified, end date and start date are defaulted to today, and a month ago respectively
+HERE
 task :list_tags, [:start_date, :end_date] do |t, args|
   start_date, end_date = get_start_and_end_dates(args)
 
@@ -26,7 +35,14 @@ task :list_tags, [:start_date, :end_date] do |t, args|
 end
 
 
-desc "List tags on a different account, optionally specify dates as YYYY-mm-dd"
+desc <<HERE
+List tags on an account in the organization (by account Id)
+Optionally, specify start and end dates in the format "YYYY-mm-dd". Order of dates does not matter
+For example:
+rake list_tags_for_account['123456789012','2017-12-25','2018-01-25']
+
+When not specified, end date and start date are defaulted to today, and a month ago respectively
+HERE
 task :list_tags_for_account, [:account_id, :start_date, :end_date] do |t, args|
   account_id = args.account_id or raise 'AWS account Id not specified'
   start_date, end_date = get_start_and_end_dates(args)
