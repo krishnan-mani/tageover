@@ -8,9 +8,13 @@ task :list_accounts do
 end
 
 
-desc "List tags"
-task :list_tags do |t, args|
-  puts get_tags
+desc "List tags, optionally specify dates as YYYY-mm-dd"
+task :list_tags, [:start_date, :end_date] do |t, args|
+
+  start_date = args.start_date
+  end_date = args.end_date
+
+  puts get_tags(start_date, end_date)
 end
 
 
@@ -19,5 +23,5 @@ task :list_tags_for_account, [:account_id] do |t, args|
   account_id = args.account_id or raise 'AWS account Id not specified'
 
   credentials = other_account?(account_id) ? get_temporary_credentials(account_id) : nil
-  puts get_tags(credentials)
+  puts get_tags(nil, nil, credentials)
 end
